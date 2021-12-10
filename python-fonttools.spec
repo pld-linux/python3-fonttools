@@ -1,13 +1,13 @@
 #
 # Conditional build:
 %bcond_without	python2	# CPython 2.x module
-%bcond_without	python3	# CPython 3.x module
+%bcond_with	python3	# CPython 3.x module (version 4+ built from fonttools.spec)
 %bcond_without	doc	# Sphinx documentation
 %bcond_without	tests	# pytest tests
 
 Summary:	A tool to convert TrueType/OpenType fonts to XML and back
 Summary(pl.UTF-8):	Narzędzie do konwersji fontów TrueType/OpenType do/z XML-a
-Name:		fonttools
+Name:		python-fonttools
 Version:	3.44.0
 Release:	4
 # basic license is BSD
@@ -15,7 +15,7 @@ Release:	4
 License:	MIT, BSD
 Group:		Development/Tools
 #Source0Download: https://github.com/fonttools/fonttools/releases
-Source0:	https://github.com/fonttools/fonttools/archive/%{version}/%{name}-%{version}.tar.gz
+Source0:	https://github.com/fonttools/fonttools/archive/%{version}/fonttools-%{version}.tar.gz
 # Source0-md5:	3f9ff311081a0f591a09552902671d29
 URL:		https://github.com/fonttools/fonttools
 %if %(locale -a | grep -q '^C\.utf8$'; echo $?)
@@ -43,16 +43,8 @@ BuildRequires:	python3-unicodedata2 >= 12.0.0
 %endif
 BuildRequires:	rpmbuild(macros) >= 1.714
 %if %{with doc}
-BuildRequires:	sphinx-pdg-3 >= 1.5.5
+BuildRequires:	sphinx-pdg-2 >= 1.5.5
 %endif
-%if %{with python2}
-Requires:	python-fonttools = %{version}-%{release}
-Requires:	python-setuptools
-%else
-Requires:	python3-fonttools = %{version}-%{release}
-Requires:	python3-setuptools
-%endif
-Provides:	ttx = %{version}-%{release}
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -108,7 +100,7 @@ Python 3 tools to manipulate font files.
 Narzędzia do manipulacji na plikach fontów dla Pythona 3.
 
 %prep
-%setup -q
+%setup -q -n fonttools-%{version}
 
 %build
 export LC_ALL=C.UTF-8
@@ -131,9 +123,9 @@ PYTHONPATH=Lib \
 %endif
 
 %if %{with doc}
-PYTHONPATH=$(pwd)/build-3/lib \
+PYTHONPATH=$(pwd)/build-2/lib \
 %{__make} -C Doc html \
-	SPHINXBUILD=sphinx-build-3
+	SPHINXBUILD=sphinx-build-2
 %endif
 
 %install
@@ -149,17 +141,11 @@ rm -rf $RPM_BUILD_ROOT
 %py_postclean
 %endif
 
+# packaged from fonttools.spec
+%{__rm} -r $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
-
-%files
-%defattr(644,root,root,755)
-%doc LICENSE LICENSE.external NEWS.rst README.rst
-%attr(755,root,root) %{_bindir}/fonttools
-%attr(755,root,root) %{_bindir}/pyftmerge
-%attr(755,root,root) %{_bindir}/pyftsubset
-%attr(755,root,root) %{_bindir}/ttx
-%{_mandir}/man1/ttx.1*
 
 %if %{with python2}
 %files -n python-fonttools
