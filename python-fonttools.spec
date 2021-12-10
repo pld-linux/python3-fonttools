@@ -41,7 +41,6 @@ BuildRequires:	python3-unicodedata2 >= 12.0.0
 %endif
 %endif
 %endif
-BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.714
 %if %{with doc}
 BuildRequires:	sphinx-pdg-2 >= 1.5.5
@@ -78,7 +77,6 @@ Narzędzia do manipulacji na plikach fontów dla Pythona 2.
 Summary:	Documentation for Python fonttools module
 Summary(pl.UTF-8):	Dokumentacja modułu Pythona fonttools
 Group:		Documentation
-BuildArch:	noarch
 
 %description -n python-fonttools-apidocs
 Documentation for Python fonttools module.
