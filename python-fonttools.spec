@@ -65,7 +65,7 @@ Summary:	Python 2 tools to manipulate font files
 Summary(pl.UTF-8):	Narzędzia do manipulacji na plikach fontów dla Pythona 2
 Group:		Libraries/Python
 Requires:	python-modules >= 1:2.7
-Requires:	python-unicodedata2 >= 11.0.0
+Requires:	python-unicodedata2 >= 12.0.0
 
 %description -n python-fonttools
 Python 2 tools to manipulate font files.
@@ -90,7 +90,7 @@ Summary(pl.UTF-8):	Narzędzia do manipulacji na plikach fontów dla Pythona 3
 Group:		Libraries/Python
 Requires:	python3-modules >= 1:3.4
 %if "%{py3_ver}" < "3.7"
-Requires:	python3-unicodedata2 >= 11.0.0
+Requires:	python3-unicodedata2 >= 12.0.0
 %endif
 
 %description -n python3-fonttools
