@@ -5,8 +5,8 @@
 %bcond_without	doc	# Sphinx documentation
 %bcond_without	tests	# pytest tests
 
-Summary:	A tool to convert TrueType/OpenType fonts to XML and back
-Summary(pl.UTF-8):	Narzędzie do konwersji fontów TrueType/OpenType do/z XML-a
+Summary:	Python 2 tools to manipulate font files
+Summary(pl.UTF-8):	Narzędzia do manipulacji na plikach fontów dla Pythona 2
 Name:		python-fonttools
 Version:	3.44.0
 Release:	5
@@ -45,43 +45,26 @@ BuildRequires:	rpmbuild(macros) >= 1.714
 %if %{with doc}
 BuildRequires:	sphinx-pdg-2 >= 1.5.5
 %endif
+Requires:	python-modules >= 1:2.7
+Requires:	python-unicodedata2 >= 12.0.0
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-TTX/FontTools is a tool for manipulating TrueType and OpenType fonts.
-It is written in Python and has a BSD-style, open-source license. TTX
-can dump TrueType and OpenType fonts to an XML-based text format and
-vice versa.
-
-%description -l pl.UTF-8
-TTX/FontTools to narzędzie do operacji na fontach TrueType i OpenType.
-Zostało napisane w Pythonie i ma otwartą licencję w stylu BSD. TTX
-potrafi wykonywać zrzuty fontów TrueType i OpenType do formatu
-tekstowego opartego na XML-u oraz dokonać operacji odwrotnej.
-
-%package -n python-fonttools
-Summary:	Python 2 tools to manipulate font files
-Summary(pl.UTF-8):	Narzędzia do manipulacji na plikach fontów dla Pythona 2
-Group:		Libraries/Python
-Requires:	python-modules >= 1:2.7
-Requires:	python-unicodedata2 >= 12.0.0
-
-%description -n python-fonttools
 Python 2 tools to manipulate font files.
 
-%description -n python-fonttools -l pl.UTF-8
+%description -l pl.UTF-8
 Narzędzia do manipulacji na plikach fontów dla Pythona 2.
 
-%package -n python-fonttools-apidocs
+%package apidocs
 Summary:	Documentation for Python fonttools module
 Summary(pl.UTF-8):	Dokumentacja modułu Pythona fonttools
 Group:		Documentation
 
-%description -n python-fonttools-apidocs
+%description apidocs
 Documentation for Python fonttools module.
 
-%description -n python-fonttools-apidocs -l pl.UTF-8
+%description apidocs -l pl.UTF-8
 Dokumentacja modułu Pythona fonttools.
 
 %package -n python3-fonttools
@@ -148,13 +131,13 @@ rm -rf $RPM_BUILD_ROOT
 rm -rf $RPM_BUILD_ROOT
 
 %if %{with python2}
-%files -n python-fonttools
+%files
 %defattr(644,root,root,755)
 %{py_sitescriptdir}/fontTools
 %{py_sitescriptdir}/fonttools-%{version}-py*.egg-info
 
 %if %{with doc}
-%files -n python-fonttools-apidocs
+%files apidocs
 %defattr(644,root,root,755)
 %doc Doc/build/html/{_static,designspaceLib,misc,pens,ttLib,varLib,*.html,*.js}
 %endif
