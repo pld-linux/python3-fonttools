@@ -1,0 +1,11 @@
+--- fonttools-3.44.0/Lib/fontTools/misc/plistlib.py.orig	2019-08-02 12:41:08.000000000 +0200
++++ fonttools-3.44.0/Lib/fontTools/misc/plistlib.py	2022-03-24 16:34:16.715273085 +0100
+@@ -105,7 +105,7 @@ def _encode_base64(data, maxlinelength=7
+     return data
+ 
+ 
+-class Data:
++class Data(object):
+     """Wrapper for binary data returned in place of the built-in bytes type
+     when loading property list data with use_builtin_types=False.
+     """
