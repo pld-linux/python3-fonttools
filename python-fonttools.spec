@@ -37,12 +37,12 @@ BuildRequires:	python3-devel >= 1:3.4
 %if %{with tests}
 BuildRequires:	python3-fs >= 2.2.0
 BuildRequires:	python3-pytest >= 3.0
-%if "%{py3_ver}" < "3.7"
+%if "%{ver_lt '%{py3_ver}' '3.7'}" == "1"
 BuildRequires:	python3-unicodedata2 >= 12.0.0
 %endif
 %endif
 %endif
-BuildRequires:	rpmbuild(macros) >= 1.714
+BuildRequires:	rpmbuild(macros) >= 1.750
 %if %{with doc}
 BuildRequires:	sphinx-pdg-2 >= 1.5.5
 %endif
@@ -73,7 +73,7 @@ Summary:	Python 3 tools to manipulate font files
 Summary(pl.UTF-8):	Narzędzia do manipulacji na plikach fontów dla Pythona 3
 Group:		Libraries/Python
 Requires:	python3-modules >= 1:3.4
-%if "%{py3_ver}" < "3.7"
+%if "%{ver_lt '%{py3_ver}' '3.7'}" == "1"
 Requires:	python3-unicodedata2 >= 12.0.0
 %endif
 
