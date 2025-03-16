@@ -85,7 +85,7 @@ Narzędzia do manipulacji na plikach fontów dla Pythona 3.
 
 %prep
 %setup -q -n fonttools-%{version}
-%patch0 -p1
+%patch -P 0 -p1
 
 %build
 export LC_ALL=C.UTF-8
