@@ -1,3 +1,4 @@
+# NOTE: currently up to date version is built from fonttools.spec
 #
 # Conditional build:
 %bcond_without	doc	# Sphinx documentation
@@ -7,7 +8,7 @@ Summary:	Python tools to manipulate font files
 Summary(pl.UTF-8):	Narzędzia do manipulacji na plikach fontów dla Pythona
 Name:		python3-fonttools
 Version:	4.56.0
-Release:	1
+Release:	1.1
 # basic license is BSD
 # FontTools includes Adobe AGL & AGLFN, which is under 3-clauses BSD license
 License:	MIT, BSD
