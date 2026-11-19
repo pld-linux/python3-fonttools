@@ -7,15 +7,15 @@
 Summary:	Python tools to manipulate font files
 Summary(pl.UTF-8):	Narzędzia do manipulacji na plikach fontów dla Pythona
 Name:		python3-fonttools
-Version:	4.56.0
-Release:	1.1
+Version:	4.68.0
+Release:	1
 # basic license is BSD
 # FontTools includes Adobe AGL & AGLFN, which is under 3-clauses BSD license
 License:	MIT, BSD
 Group:		Development/Tools
 #Source0Download: https://github.com/fonttools/fonttools/releases
 Source0:	https://github.com/fonttools/fonttools/archive/%{version}/fonttools-%{version}.tar.gz
-# Source0-md5:	5226de2f08e946a3b65e83db23c093da
+# Source0-md5:	282480af584d02ce04d206da376f30e4
 URL:		https://github.com/fonttools/fonttools
 %if %(locale -a | grep -q '^C\.utf8$'; echo $?)
 BuildRequires:	glibc-localedb-all
